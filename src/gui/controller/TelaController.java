@@ -24,4 +24,7 @@ public class TelaController implements Initializable {
         // TODO
     }    
     
+    public void adicionarValor (int ID){
+        
+    }
 }
