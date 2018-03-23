@@ -25,7 +25,7 @@ public class Sincronizado implements Runnable {
 
      public synchronized void realizarPedidos() {
         for (int i = 0; i < numeroPedidos; i++) {
-            tela.finalizar(id);
+          //  tela.finalizar(id);
         }
     }
 

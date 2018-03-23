@@ -21,13 +21,15 @@ public class NaoSincronizado implements Runnable {
 
     public void realizarPedidos() {
         for (int i = 0; i < numeroPedidos; i++) {
-            tela.finalizar(id);
+            System.out.println("ID:"+id+"\t Pedido Numero:"+numeroPedidos);
         }
+        
+          //  tela.finalizar(id);
     }
 
     @Override
     public void run() {
-
+        realizarPedidos();
     }
 
 }

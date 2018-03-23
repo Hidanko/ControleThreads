@@ -18,6 +18,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import thread.NaoSincronizado;
 
 public class TelaController implements Initializable {
@@ -34,24 +35,40 @@ public class TelaController implements Initializable {
     private Button buttonRodar;
     @FXML
     private TabPane panePrincipal;
-
+    @FXML
+    private TableColumn<LinhaTabela, String> coluna1;
+    @FXML
+    private TableColumn<LinhaTabela, String> coluna2;
+    @FXML
+    private TableColumn<LinhaTabela, String> coluna3;
+    @FXML
+    private TableColumn<LinhaTabela, String> coluna4;
+    
+    
     ObservableList<LinhaTabela> lista;
     /**
      * Initializes the controller class.
      */
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+       coluna1.setCellValueFactory(new PropertyValueFactory<>("ID"));
+       coluna2.setCellValueFactory(new PropertyValueFactory<>("valor"));
+       
+       coluna3.setCellValueFactory(new PropertyValueFactory<>("ID"));
+       coluna4.setCellValueFactory(new PropertyValueFactory<>("valor"));
     }
 
     @FXML
-    private void iniciarPedidos(ActionEvent event) {
-        int numThreads = Integer.getInteger(txtThreads.getText());
+    public void iniciarPedidos(ActionEvent event) {
+        String text = txtThreads.getText();
+        // Erro na proxima linha
+        int numThreads = Integer.parseInt(text);
         int numReq = Integer.getInteger(txtRequest.getText());
 
         if (numThreads > 0 && numThreads < 1000 && numReq < 1000000) {
 
             System.out.println("Validado");
-            int eachReq = numReq / numThreads;
+            int eachReq =(int) numReq / numThreads;
 
             lista = FXCollections.observableArrayList();
             for (int i = 0; i < numThreads; i++) {
@@ -65,9 +82,9 @@ public class TelaController implements Initializable {
 
     }
 
-    public void finalizar(int ID) {
-        LinhaTabela atualzado = new LinhaTabela(ID, "FINALIZADO");
-        lista.remove(ID);
-        lista.add(atualzado);
-    }
+//    public void finalizar(int ID) {
+//        LinhaTabela atualzado = new LinhaTabela(ID, "FINALIZADO");
+//        lista.remove(ID);
+//        lista.add(atualzado);
+//    }
 }
