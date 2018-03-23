@@ -1,14 +1,17 @@
+package main;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main;
+
 
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
@@ -18,14 +21,14 @@ import javafx.stage.Stage;
 public class Principal extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws IOException {
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("gui/fxml/tela.fxml"));
-        Parent root = loader.load();
-
-
-        primaryStage.setTitle("Hello World");
-        primaryStage.show();
+    public void start(Stage stage) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../gui/fxml/tela.fxml"));
+        
+        Scene scene = new Scene(root);
+        
+        stage.setTitle("Controle de Threads");
+        stage.setScene(scene);
+        stage.show();
         
     }
 

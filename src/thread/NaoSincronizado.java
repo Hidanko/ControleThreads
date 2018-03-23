@@ -21,7 +21,7 @@ public class NaoSincronizado implements Runnable {
 
     public void realizarPedidos() {
         for (int i = 0; i < numeroPedidos; i++) {
-            tela.adicionarValor(id);
+            tela.finalizar(id);
         }
     }
 
