@@ -17,7 +17,7 @@ public class TesteThreadSync {
     public static void main(String[] args) {
         Sincronizado sync = new Sincronizado(new TelaController(), 5, 5);
         Thread thr = new Thread(sync);
-        thr.run();
+        thr.start();
         System.out.println("RODOU");
     }
 }
