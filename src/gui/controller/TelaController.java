@@ -43,42 +43,40 @@ public class TelaController implements Initializable {
     private TableColumn<LinhaTabela, String> coluna3;
     @FXML
     private TableColumn<LinhaTabela, String> coluna4;
-    
-    
+
     ObservableList<LinhaTabela> lista;
+    @FXML
+    private TableView<LinhaTabela> tableTeste;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       coluna1.setCellValueFactory(new PropertyValueFactory<>("ID"));
-       coluna2.setCellValueFactory(new PropertyValueFactory<>("valor"));
-       
-       coluna3.setCellValueFactory(new PropertyValueFactory<>("ID"));
-       coluna4.setCellValueFactory(new PropertyValueFactory<>("valor"));
+        // Tabela da aba não sincronizada
+        coluna1.setCellValueFactory(new PropertyValueFactory<>("ID"));
+        coluna2.setCellValueFactory(new PropertyValueFactory<>("valor"));
+        // Tabela da aba sincronizada
+        coluna3.setCellValueFactory(new PropertyValueFactory<>("ID"));
+        coluna4.setCellValueFactory(new PropertyValueFactory<>("valor"));
     }
 
     @FXML
     public void iniciarPedidos(ActionEvent event) {
         String text = txtThreads.getText();
-        // Erro na proxima linha
         int numThreads = Integer.parseInt(text);
         int numReq = Integer.getInteger(txtRequest.getText());
 
-        if (numThreads > 0 && numThreads < 1000 && numReq < 1000000) {
+        System.out.println("Validado");
+        int eachReq = (int) numReq / numThreads;
 
-            System.out.println("Validado");
-            int eachReq =(int) numReq / numThreads;
-
-            lista = FXCollections.observableArrayList();
-            for (int i = 0; i < numThreads; i++) {
-                NaoSincronizado ns = new NaoSincronizado(this, i, eachReq);
-                ns.run();
-                lista.add(new LinhaTabela(i, "INICIADO"));
-            }
-            tableErro.setItems(lista);
-
+        lista = FXCollections.observableArrayList();
+        for (int i = 0; i < numThreads; i++) {
+            NaoSincronizado ns = new NaoSincronizado(this, i, eachReq);
+            ns.run();
+            lista.add(new LinhaTabela(i, "INICIADO"));
         }
+        tableErro.setItems(lista);
 
     }
 

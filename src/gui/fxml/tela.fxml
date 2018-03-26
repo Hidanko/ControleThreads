@@ -61,7 +61,7 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <TableView fx:id="tableOtimizado" prefHeight="200.0" prefWidth="200.0">
+                              <TableView fx:id="tableTeste" prefHeight="200.0" prefWidth="200.0">
                                  <columns>
                                     <TableColumn fx:id="coluna3" prefWidth="146.0" text="ID da Thread" />
                                     <TableColumn fx:id="coluna4" prefWidth="153.0" text="Requisições" />
