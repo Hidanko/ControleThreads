@@ -13,7 +13,7 @@ import gui.controller.TelaController;
  */
 public class Sincronizado implements Runnable {
     
-    TelaController tela;
+       TelaController tela;
     int id;
     int numeroPedidos;
 
@@ -23,11 +23,14 @@ public class Sincronizado implements Runnable {
         this.numeroPedidos = numeroPedidos;
     }
 
-     public synchronized void realizarPedidos() {
+    public void realizarPedidos() {
         for (int i = 0; i < numeroPedidos; i++) {
-            System.out.println("ID:"+id+"\t Pedido Numero:"+numeroPedidos);
+            System.out.println("ID:"+id+"\t Pedido Numero:"+i);
+            
+            tela.incrementar();
         }
-        // finalizar
+        
+            tela.finalizar(id);
     }
 
     @Override

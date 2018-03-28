@@ -19,7 +19,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javax.swing.JOptionPane;
 import thread.NaoSincronizado;
+import thread.Sincronizado;
 
 public class TelaController implements Initializable {
 
@@ -45,6 +47,9 @@ public class TelaController implements Initializable {
     private TableColumn<LinhaTabela, String> coluna4;
 
     ObservableList<LinhaTabela> lista;
+    int contador;
+    int threadsFinalizados;
+
     @FXML
     private TableView<LinhaTabela> tableTeste;
 
@@ -63,26 +68,44 @@ public class TelaController implements Initializable {
 
     @FXML
     public void iniciarPedidos(ActionEvent event) {
-        String text = txtThreads.getText();
-        int numThreads = Integer.parseInt(text);
-        int numReq = Integer.getInteger(txtRequest.getText());
-
-        System.out.println("Validado");
-        int eachReq = (int) numReq / numThreads;
-
+        contador = 0;
         lista = FXCollections.observableArrayList();
-        for (int i = 0; i < numThreads; i++) {
-            NaoSincronizado ns = new NaoSincronizado(this, i, eachReq);
-            ns.run();
+
+        int threads = Integer.valueOf(txtThreads.getText());
+        threadsFinalizados = threads;
+        int requests = Integer.valueOf(txtRequest.getText());
+        for (int i = 0; i < threads; i++) {
             lista.add(new LinhaTabela(i, "INICIADO"));
+
+            // Corrigir esse trecho
+            //if (ALGUMA COISA)
+            NaoSincronizado ns = new NaoSincronizado(this, i, ((int) requests / threads));
+//            else 
+//            Sincronizado ns1 = new Sincronizado(this, i,((int) requests/threads));
+            Thread th = new Thread(ns);
+            th.start();
         }
         tableErro.setItems(lista);
-
     }
 
-//    public void finalizar(int ID) {
-//        LinhaTabela atualzado = new LinhaTabela(ID, "FINALIZADO");
-//        lista.remove(ID);
-//        lista.add(atualzado);
-//    }
+    public void finalizar(int ID) {
+        LinhaTabela atualzado = new LinhaTabela(ID, "FINALIZADO");
+        lista.remove(ID);
+        lista.add(atualzado);
+        System.out.println(ID + " finalizado");
+        System.out.println("Contador atual: " + contador);
+
+        threadsFinalizados--;
+        if (threadsFinalizados == 0) {
+            JOptionPane.showMessageDialog(null, "Valor final: " + contador);
+        }
+    }
+
+    public synchronized void incrementarSync() {
+        contador++;
+    }
+
+    public void incrementar() {
+        contador++;
+    }
 }
