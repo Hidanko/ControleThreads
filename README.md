@@ -6,5 +6,6 @@ Para melhor apresentação dos resultados, é gerado uma tabela com todas as thr
 O numero de requerimentos é utilizado como requerimentos dividido pelo numero de threads e armazenado em uma variável inteiro, portanto, a aplicação irá "arredondar" o valor para um divisivel pelo numero de threads selecionado.
 
 ## IDE's 
-l. [Spring Tools Suite](https://spring.io/tools)
+1. [Spring Tools Suite](https://spring.io/tools)
+
 l. [Oracle JavaFX Scene Builder](http://www.oracle.com/technetwork/java/javase/downloads/javafxscenebuilder-info-2157684.html)
