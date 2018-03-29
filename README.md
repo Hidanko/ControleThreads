@@ -7,5 +7,4 @@ O numero de requerimentos é utilizado como requerimentos dividido pelo numero d
 
 ## IDE's 
 1. [Spring Tools Suite](https://spring.io/tools)
-
-l. [Oracle JavaFX Scene Builder](http://www.oracle.com/technetwork/java/javase/downloads/javafxscenebuilder-info-2157684.html)
+1. [Oracle JavaFX Scene Builder](http://www.oracle.com/technetwork/java/javase/downloads/javafxscenebuilder-info-2157684.html)
