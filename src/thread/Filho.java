@@ -39,7 +39,7 @@ public class Filho implements Runnable {
 		}
 
 		tela.finalizar(id);
-		System.out.println(sinc? "Teste utilizando método sincronizado": "Teste utilizando o método não sincronizado");
+		System.out.println(sinc? "Teste utilizando metodo sincronizado": "Teste utilizando o metodo nao sincronizado");
 	}
 
 	@Override
